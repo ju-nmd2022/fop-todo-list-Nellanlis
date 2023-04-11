@@ -4,14 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List</title>
+    <title>Wish List</title>
     <link rel="stylesheet" href="main.css" />
     <script src="todolist.js" defer></script>
   </head>
   <body>
     <header class="header">
-      <h2>Wish List</h2>
+      <h1>° Wish List °</h1>
     </header>
-    <main class="container"><p>Hello my name is Nelly</p></main>
+    <main class="container">
+      <div class="newWish" id="newWish">
+        <input type="text" placeholder="What do you wish for?" id="wishInput" />
+        <button id="confirmWish">🔮</button>
+        <div id="wishesMade"><p></p></div>
+      </div>
+    </main>
   </body>
 </html>
