@@ -1,3 +1,5 @@
+//Inspired and learnt from Garrits youtubevideos and learning material. Mainly from the fruit shop -- https://www.youtube.com/watch?v=WvnMopRn5XM
+
 const inputWishElement = document.getElementById("wishInput");
 
 const addWishElement = document.getElementById("confirmWish");
@@ -13,15 +15,17 @@ addWishElement.addEventListener("click", () => {
   }
 });
 
-//putting in a wish
+//typing in a wish
 function buttonPressed() {
   //making the wish appear underneath
   const listElement = document.createElement("div");
   listElement.innerText = inputWishElement.value;
   listElement.classList.add("wishlist");
   wishConfirmedElement.appendChild(listElement);
+  localStorage.setItem("listElement", "value");
+  console.log(localStorage, "inputWishElement");
 
-  inputWishElement.value = " ";
+  inputWishElement.value = "";
 
   //making the button for marking as fulfilled
   const fulfilledWishElement = document.createElement("button");
@@ -36,6 +40,7 @@ function buttonPressed() {
   listElement.appendChild(deleteWishElement);
 
   //styling and making it appear fulfilled when clicked
+  //styling partially adapted from w3schools, such as here -- https://www.w3schools.com/jsref/prop_style_fontweight.asp
   fulfilledWishElement.addEventListener("click", () => {
     listElement.style.color = "#BA55D3";
     listElement.style.fontSize = "14pt";
