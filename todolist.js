@@ -6,14 +6,14 @@ const wishConfirmedElement = document.getElementById("wishesMade");
 
 let wishes = [];
 
-//Event Listener for button clicked
+//event Listener for button clicked
 addWishElement.addEventListener("click", () => {
   if (inputWishElement.value.length > 0) {
     buttonPressed();
   }
 });
 
-//Putting in a wish
+//putting in a wish
 function buttonPressed() {
   //making the wish appear underneath
   const listElement = document.createElement("div");
@@ -35,25 +35,15 @@ function buttonPressed() {
   deleteWishElement.innerText = "✖️";
   listElement.appendChild(deleteWishElement);
 
+  //styling and making it appear fulfilled when clicked
   fulfilledWishElement.addEventListener("click", () => {
     listElement.style.color = "#BA55D3";
     listElement.style.fontSize = "14pt";
     listElement.style.fontWeight = "bold";
   });
 
+  //pressing the delete button to delete
   deleteWishElement.addEventListener("click", () => {
     wishConfirmedElement.removeChild(listElement);
   });
 }
-
-//Having it appear underneath
-/*function addToList() {
-  wishes.push(this.innerText);
-} */
-
-/*function appearInList() {
-  const wishTextElement = document.createElement("p");
-  wishTextElement.classList.add("listAppearing");
-  wishTextElement.innerText = inputWishElement.value;
-  listElement.appendChild(wishTextElement);
-}*/
