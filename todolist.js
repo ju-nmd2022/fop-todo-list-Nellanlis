@@ -6,7 +6,7 @@ const addWishElement = document.getElementById("confirmWish");
 
 const wishConfirmedElement = document.getElementById("wishesMade");
 
-let wishes = [];
+//let wishes = [];
 
 //event Listener for button clicked
 addWishElement.addEventListener("click", () => {
@@ -22,8 +22,6 @@ function buttonPressed() {
   listElement.innerText = inputWishElement.value;
   listElement.classList.add("wishlist");
   wishConfirmedElement.appendChild(listElement);
-  localStorage.setItem("listElement", "value");
-  console.log(localStorage, "inputWishElement");
 
   inputWishElement.value = "";
 
@@ -51,4 +49,12 @@ function buttonPressed() {
   deleteWishElement.addEventListener("click", () => {
     wishConfirmedElement.removeChild(listElement);
   });
+}
+
+//saving to localStorage
+function savingWishes() {
+  const myWishes = inputWishElement.value;
+  const savedWishes = JSON.stringify(myWishes);
+  localStorage.setItem("theWishes", savedWishes);
+  console.log(savedWishes);
 }
