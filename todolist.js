@@ -6,7 +6,7 @@ const addWishElement = document.getElementById("confirmWish");
 
 const wishConfirmedElement = document.getElementById("wishesMade");
 
-let wishes = [];
+//let wishes = [];
 
 //event Listener for button clicked
 addWishElement.addEventListener("click", () => {
@@ -16,7 +16,7 @@ addWishElement.addEventListener("click", () => {
 });
 
 //typing in a wish
-function buttonPressed() {
+function buttonPressed(wish) {
   //making the wish appear underneath
   const listElement = document.createElement("div");
   listElement.innerText = inputWishElement.value;
