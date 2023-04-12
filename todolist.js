@@ -6,7 +6,7 @@ const addWishElement = document.getElementById("confirmWish");
 
 const wishConfirmedElement = document.getElementById("wishesMade");
 
-//let wishes = [];
+let wishes = [];
 
 //event Listener for button clicked
 addWishElement.addEventListener("click", () => {
@@ -22,6 +22,9 @@ function buttonPressed() {
   listElement.innerText = inputWishElement.value;
   listElement.classList.add("wishlist");
   wishConfirmedElement.appendChild(listElement);
+  //wishes.push(listElement);
+
+  savingWishes();
 
   inputWishElement.value = "";
 
@@ -51,10 +54,30 @@ function buttonPressed() {
   });
 }
 
+//displaying the saved wishes
+function displaySavedWishes() {
+  load();
+
+  for (let i = 0; i < myWishes.length; i++) {
+    const item = myWishes[i];
+
+    const { listElement } = buttonPressed(item);
+    inputWishElement.append(myWishes);
+  }
+}
+displaySavedWishes();
+
 //saving to localStorage
 function savingWishes() {
   const myWishes = inputWishElement.value;
   const savedWishes = JSON.stringify(myWishes);
   localStorage.setItem("theWishes", savedWishes);
-  console.log(savedWishes);
+}
+
+function load() {
+  const data = localStorage.getItem("theWishes");
+
+  if (data) {
+    myWishes = JSON.parse(data);
+  }
 }
