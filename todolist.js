@@ -6,25 +6,28 @@ const addWishElement = document.getElementById("confirmWish");
 
 const wishConfirmedElement = document.getElementById("wishesMade");
 
-//let wishes = [];
+let wishes = [];
 
 //event Listener for button clicked
 addWishElement.addEventListener("click", () => {
   if (inputWishElement.value.length > 0) {
-    buttonPressed();
+    buttonPressed(inputWishElement.value);
   }
 });
 
 //typing in a wish
-function buttonPressed(wish) {
+function buttonPressed(item) {
   //making the wish appear underneath
   const listElement = document.createElement("div");
-  listElement.innerText = inputWishElement.value;
   listElement.classList.add("wishlist");
+
+  const textElement = document.createElement("div");
+  textElement.classList.add("text");
+  textElement.innerText = item;
+  listElement.appendChild(textElement);
+
   wishConfirmedElement.appendChild(listElement);
   //wishes.push(listElement);
-
-  savingWishes();
 
   inputWishElement.value = "";
 
@@ -51,33 +54,48 @@ function buttonPressed(wish) {
   //pressing the delete button to delete
   deleteWishElement.addEventListener("click", () => {
     wishConfirmedElement.removeChild(listElement);
+    savingWishes();
   });
+
+  savingWishes();
 }
 
 //displaying the saved wishes
 function displaySavedWishes() {
-  load();
+  let myWishes = load();
 
   for (let i = 0; i < myWishes.length; i++) {
     const item = myWishes[i];
 
-    const { listElement } = buttonPressed(item);
-    inputWishElement.append(myWishes);
+    const listElement = buttonPressed(item);
+    inputWishElement.append(listElement);
   }
 }
-displaySavedWishes();
 
 //saving to localStorage
 function savingWishes() {
-  const myWishes = inputWishElement.value;
-  const savedWishes = JSON.stringify(myWishes);
+  const listElements = document.querySelectorAll(".wishlist");
+  wishes = [];
+
+  for (let i = 0; i < listElements.length; i++) {
+    wishes.push(listElements[i].firstChild.innerText);
+  }
+
+  const savedWishes = JSON.stringify(wishes);
   localStorage.setItem("theWishes", savedWishes);
 }
 
 function load() {
   const data = localStorage.getItem("theWishes");
+  const parsedData = JSON.parse(data);
 
-  if (data) {
-    myWishes = JSON.parse(data);
+  return parsedData;
+
+  /*if (data) {
+    return JSON.parse(data);
   }
+  */
 }
+displaySavedWishes();
+
+// skapa en array, lägg till texten med wishes.push(valuen), spara till localstorage, bara array i function load med json.parse.
